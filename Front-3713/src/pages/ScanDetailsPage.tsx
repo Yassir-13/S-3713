@@ -1,4 +1,4 @@
-// src/pages/ScanDetailsPage.tsx
+// src/pages/ScanDetailsPage.tsx - English Version
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AppLayout from "../components/layout";
@@ -24,7 +24,7 @@ const ScanDetailsContent: React.FC = () => {
         }
         setScan(result);
       } catch (err: any) {
-        console.error("Erreur lors du chargement des détails:", err.message);
+        console.error("Error loading details:", err.message);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -38,20 +38,20 @@ const ScanDetailsContent: React.FC = () => {
     navigate('/scanner');
   };
 
-  // Fonction pour obtenir la couleur de statut
+  // Function to get status color
   const getStatusColor = (status: string | null) => {
     if (!status) return "#3498db";
     
     switch (status) {
       case "completed":
-        return "#2ecc71"; // vert
+        return "#2ecc71"; // green
       case "failed":
-        return "#e74c3c"; // rouge
+        return "#e74c3c"; // red
       case "pending":
       case "running":
-        return "#f39c12"; // orange/jaune
+        return "#f39c12"; // orange/yellow
       default:
-        return "#3498db"; // bleu
+        return "#3498db"; // blue
     }
   };
 
@@ -62,31 +62,31 @@ const ScanDetailsContent: React.FC = () => {
           onClick={handleBack}
           style={styles.backButton}
         >
-          &larr; Retour au Scanner
+          &larr; Back to Scanner
         </button>
         
-        <h2>Détails du Scan</h2>
+        <h2>Scan Details</h2>
       </div>
 
       {loading ? (
         <div style={styles.loadingState}>
-          <p>Chargement des détails du scan...</p>
+          <p>Loading scan details...</p>
         </div>
       ) : error ? (
         <div style={styles.errorState}>
-          <h3>Erreur:</h3>
+          <h3>Error:</h3>
           <p>{error}</p>
           <button 
             onClick={handleBack}
             style={{...styles.backButton, marginTop: "20px"}}
           >
-            Retour au Scanner
+            Back to Scanner
           </button>
         </div>
       ) : scan ? (
         <div style={styles.scanContent}>
           <div style={styles.summaryBox}>
-            <h3>Informations générales</h3>
+            <h3>General Information</h3>
             
             <div style={styles.infoRow}>
               <strong>URL:</strong> 
@@ -94,7 +94,7 @@ const ScanDetailsContent: React.FC = () => {
             </div>
             
             <div style={styles.infoRow}>
-              <strong>Statut:</strong>
+              <strong>Status:</strong>
               <span style={{
                 color: getStatusColor(scan.status),
                 fontWeight: "bold"
@@ -104,20 +104,20 @@ const ScanDetailsContent: React.FC = () => {
             </div>
             
             <div style={styles.infoRow}>
-              <strong>Date du scan:</strong>
+              <strong>Scan date:</strong>
               <span>{new Date(scan.created_at).toLocaleString()}</span>
             </div>
           </div>
 
           {scan.error && (
             <div style={styles.errorBox}>
-              <h3>Erreur du scan</h3>
+              <h3>Scan Error</h3>
               <p>{scan.error}</p>
             </div>
           )}
 
           <div style={styles.resultsBox}>
-            <h3>Résultats Rapides</h3>
+            <h3>Quick Results</h3>
             {scan.gemini_analysis && (
                 <div style={styles.geminiAnalysisSection}>
                   <div style={styles.geminiContent}>
@@ -129,13 +129,13 @@ const ScanDetailsContent: React.FC = () => {
         </div>
       ) : (
         <div style={styles.errorState}>
-          <h3>Scan introuvable</h3>
-          <p>Le scan demandé n'existe pas ou a été supprimé.</p>
+          <h3>Scan not found</h3>
+          <p>The requested scan does not exist or has been deleted.</p>
           <button 
             onClick={handleBack}
             style={{...styles.backButton, marginTop: "20px"}}
           >
-            Retour au Scanner
+            Back to Scanner
           </button>
         </div>
       )}
@@ -143,20 +143,20 @@ const ScanDetailsContent: React.FC = () => {
   );
 };
 
-// Objet styles pour les styles inline
+// Inline styles object
 const styles = {
   geminiAnalysisSection: {
-  padding: "20px",
-  backgroundColor: "rgba(52, 152, 219, 0.05)",
-  borderRadius: "8px",
-  border: "1px solid #3498db",
-  marginTop: "30px",
-},
-geminiContent: {
-  whiteSpace: "pre-wrap" as const,
-  lineHeight: "1.6",
-  fontSize: "0.95rem",
-},
+    padding: "20px",
+    backgroundColor: "rgba(52, 152, 219, 0.05)",
+    borderRadius: "8px",
+    border: "1px solid #3498db",
+    marginTop: "30px",
+  },
+  geminiContent: {
+    whiteSpace: "pre-wrap" as const,
+    lineHeight: "1.6",
+    fontSize: "0.95rem",
+  },
   scanDetailsPage: {
     padding: "150px",
     color: "var(--text-color)",
@@ -243,7 +243,7 @@ geminiContent: {
   }
 };
 
-// Composant principal qui utilise AppLayout
+// Main component that uses AppLayout
 const ScanDetailsPage: React.FC = () => {
   return (
     <AppLayout>
